@@ -88,6 +88,9 @@ export default class Formatter {
       } else {
         formattedQuery = this.formatWithSpaces(node, formattedQuery);
       }
+      if (formattedQuery.indexOf('firstname') != -1) {
+        console.log(token.type, token.value, formattedQuery.replace(/\n/g,'[LB]'));
+      } 
     }
 
     const appendix = this.newline ? '\n' : '';
@@ -271,7 +274,11 @@ export default class Formatter {
 
   private formatBlockComment = (node: Node<Token>, query: string) => {
     const token = node.item;
-    return this.addNewline(this.addNewline(query) + this.indentComment(token.value));
+    var newlines = 1;
+    if (query.slice(-1) === '\n') {
+      newlines = 2;
+    }
+    return this.addNewline(this.addNewline(query, newlines) + this.indentComment(token.value));
   };
 
   private formatReservedWord = (node: Node<Token>, query: string) => {
@@ -436,6 +443,7 @@ export default class Formatter {
 
   private formatQuerySeparator = (node: Node<Token>, query: string) => {
     const token = node.item;
-    return this.trimTrailingWhitespace(node, query) + token.value + '\n';
+    this.indentation.reset();
+    return this.addNewline(this.trimTrailingWhitespace(node, query) + token.value + '\n', 2);
   };
 }

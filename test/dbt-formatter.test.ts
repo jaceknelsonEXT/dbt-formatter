@@ -59,6 +59,21 @@ describe('jinja flavored queries', () => {
     expect(formatted).toBe(fixtures.dbtRefWithClause.result);
   });
 
+  it('works with single-line comments', () => {
+    const formatted = formatter(fixtures.dbtComment.input);
+    expect(formatted).toBe(fixtures.dbtComment.result);
+  });
+
+  it('works with complex single-line comments', () => {
+    const formatted = formatter(fixtures.dbtComplexComment.input);
+    expect(formatted).toBe(fixtures.dbtComplexComment.result);
+  });
+
+  it('works with two-query statements', () => {
+    const formatted = formatter(fixtures.dbtTwoQueries.input);
+    expect(formatted).toBe(fixtures.dbtTwoQueries.result);
+  });
+
   it('works with nested case statements', () => {
     const formatted = formatter(fixtures.nestedCaseStatement.input, {
       sql: 'default',

@@ -76,6 +76,7 @@ from
 `,
 };
 
+
 export const dbtRefWithClause = {
   input: `{{ config(materialized='incremental', unique_key='people_id') }}
   with new_table as (
@@ -102,6 +103,54 @@ from
   new_table
 `,
 };
+
+export const dbtComment = {
+  input: `select name, lastname from {{ ref('people') }} -- This is a comment, yes it is`,
+  result: `select
+  name,
+  lastname
+from
+  {{ ref('people') }}
+  -- This is a comment, yes it is
+`,
+};
+
+export const dbtComplexComment = {
+  input: `select name, -- comment
+  --middlename, 
+  lastname
+  from {{ ref('people') }} `,
+  result: `select
+  name, -- comment
+  --middlename,
+  lastname
+from
+  {{ ref('people') }}
+`,
+};
+
+export const dbtTwoQueries = {
+  input: `select firstname, lastname from {{ref('people') }};
+
+  
+  /* Comment */
+  select firstname, lastname from {{ref('people') }}
+  `,
+  result: `select
+  firstname,
+  lastname
+from
+  {{ ref('people') }};
+
+/* Comment */
+select
+  firstname,
+  lastname
+from
+  {{ ref('people') }}
+`,
+};
+
 
 export const nestedCaseStatement = {
   input: `{# This is a test comment #}
