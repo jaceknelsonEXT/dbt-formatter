@@ -107,6 +107,7 @@
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-config-standard": "^9.0.0",
+    "tsx": "^4.19.0",
     "typedoc": "^0.17.7",
     "typescript": "^5.5.4"
   },

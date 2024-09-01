@@ -1,0 +1,22 @@
+declare const _default: {
+    DBT_START_VAR: string;
+    DBT_END_VAR: string;
+    DBT_START_TEMPLATE: string;
+    DBT_START_MARKERS: string;
+    DBT_END_MARKERS: string;
+    DBT_END_TEMPLATE: string;
+    WHITESPACE: string;
+    WORD: string;
+    STRING: string;
+    RESERVED: string;
+    RESERVED_TOPLEVEL: string;
+    RESERVED_NEWLINE: string;
+    OPERATOR: string;
+    OPEN_PAREN: string;
+    CLOSE_PAREN: string;
+    LINE_COMMENT: string;
+    BLOCK_COMMENT: string;
+    NUMBER: string;
+    PLACEHOLDER: string;
+};
+export default _default;
